@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class Extra_Feature {
     @Id
     @GeneratedValue
-    private int id;
+    @Column(name = "productID", unique = true, nullable = false)
+    private int Product_ID;
     private boolean touch_screen;
     private boolean face_recognition;
     private boolean fingerprint_reader;

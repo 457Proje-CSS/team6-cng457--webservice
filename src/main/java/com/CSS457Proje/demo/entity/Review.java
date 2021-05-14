@@ -2,7 +2,7 @@ package com.CSS457Proje.demo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import javax.persistence.*;
 
@@ -16,6 +16,7 @@ public class Review {
 
     @Id
     @GeneratedValue
+    @Column(name = "productID", unique = true, nullable = false)
     private int Product_ID;
     private String Comment;
     private int rating;

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -33,16 +34,14 @@ public class Product {
         return productID;
     }
 
-    
-
+/*
     @ManyToMany(targetEntity = Extra_Feature.class, cascade= CascadeType.ALL)
-    @JoinColumn(name="product_id",referencedColumnName = "productID")
-    List<Extra_Feature> ExtraFeatures;
-  
+    @JoinColumn(name="Product_ID",referencedColumnName = "productID")
+    private List<Extra_Feature> ExtraFeatures = new ArrayList<>();
+
     @OneToMany(targetEntity = Review.class, cascade= CascadeType.ALL)
     @JoinColumn(name="Product_ID", referencedColumnName = "productID")
-    List<Review> Reviews;
-
-
+    private List<Review> Reviews = new ArrayList<>();
+*/
 
 }
