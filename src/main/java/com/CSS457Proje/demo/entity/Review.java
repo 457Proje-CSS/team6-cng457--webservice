@@ -16,7 +16,8 @@ public class Review {
 
     @Id
     @GeneratedValue
-    String Comment;
-    int rating;
+    private int Product_ID;
+    private String Comment;
+    private int rating;
 
 }
