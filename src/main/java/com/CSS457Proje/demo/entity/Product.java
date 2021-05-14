@@ -33,10 +33,16 @@ public class Product {
         return productID;
     }
 
-    @OneToMany(targetEntity = Review.class, cascade= CascadeType.ALL)
+    
 
     @ManyToMany(targetEntity = Extra_Feature.class, cascade= CascadeType.ALL)
     @JoinColumn(name="product_id",referencedColumnName = "productID")
     List<Extra_Feature> ExtraFeatures;
+  
+    @OneToMany(targetEntity = Review.class, cascade= CascadeType.ALL)
+    @JoinColumn(name="Product_ID", referencedColumnName = "productID")
+    List<Review> Reviews;
+
+
 
 }
