@@ -16,6 +16,5 @@ import javax.persistence.Table;
 @Table(name = "Telephone")
 public class Telephone extends Product{
     private int internalMemory;
-    @ManyToOne(targetEntity = TelephoneInventory.class, cascade= CascadeType.ALL)
 
 }
