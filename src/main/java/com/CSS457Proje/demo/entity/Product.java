@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
@@ -33,7 +34,10 @@ public class Product {
     }
 
     @OneToMany(targetEntity = Review.class, cascade= CascadeType.ALL)
+    @JoinColumn(name="Product_ID", referencedColumnName = "productID")
+    List<Review> Reviews;
+
     @ManyToMany(targetEntity = ExtraFeature.class, cascade= CascadeType.ALL)
-    //List<Review> Reviews;
+
 
 }
