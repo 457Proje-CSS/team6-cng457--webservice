@@ -16,8 +16,8 @@ import javax.persistence.*;
 @Table(name = "product")
 public class Product {
     @javax.persistence.Id
+    @Column(name = "productID", unique = true, nullable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "productID")
     private Long productID;
 
     private String name;
@@ -30,12 +30,16 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productFkey")
     private List<Review> reviews = new ArrayList<Review>();
 
+    @ManyToMany
+    @JoinTable(
+            name="Product_Features",
+            joinColumns=@JoinColumn(name="Product_ID", referencedColumnName="productID"),
+            inverseJoinColumns=@JoinColumn(name="Feature_ID", referencedColumnName="FeatureID"))
+    private List<Extra_Feature> features;
+
     public void addReviewToProduct(Review review) {
         review.setReviewID(this);
         this.reviews.add(review);
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ext_feature_ID")
-    private Extra_Feature ext_feature;
     }

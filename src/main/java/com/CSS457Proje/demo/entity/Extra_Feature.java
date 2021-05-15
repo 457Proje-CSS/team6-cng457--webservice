@@ -15,15 +15,11 @@ import java.util.List;
 @Table(name = "Extra_Feature")
 public class Extra_Feature {
     @Id
-    @GeneratedValue
-    @Column(name = "Product_ID", unique = true, nullable = false)
-    private int Product_ID;
-    private boolean touch_screen;
-    private boolean face_recognition;
-    private boolean fingerprint_reader;
-    private boolean extra_long_battery_life;
-    private boolean all_day_battery_life;
+    @Column(name = "FeatureID", unique = true, nullable = false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int FeatureID;
+    private String feature;
 
-    @OneToMany(mappedBy = "ext_feature")
+    @ManyToMany(mappedBy = "features")
     private List<Product> products;
 }

@@ -13,13 +13,12 @@ import java.io.Serializable;
 @Entity
 @Table(name="review")
 
-public class Review implements Serializable{
-
+public class Review{
+    @Column(name = "ReviewID", unique = true, nullable = false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id private int ReviewID;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "productFkey", referencedColumnName = "productID",foreignKey = @ForeignKey(name = "TestKey"))
-    @javax.persistence.Id
     private Product productFkey;
-
     private String Comment;
     private int rating;
     public void setReviewID(Product prodID) {
