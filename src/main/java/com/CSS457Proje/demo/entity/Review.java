@@ -15,9 +15,9 @@ import java.io.Serializable;
 
 public class Review implements Serializable{
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @javax.persistence.Id
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "productFkey", referencedColumnName = "productID",foreignKey = @ForeignKey(name = "TestKey"))
+    @javax.persistence.Id
     private Product productFkey;
 
     private String Comment;

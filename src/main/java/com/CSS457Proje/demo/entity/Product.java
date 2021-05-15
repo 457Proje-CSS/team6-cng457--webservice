@@ -34,4 +34,8 @@ public class Product {
         review.setReviewID(this);
         this.reviews.add(review);
     }
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ext_feature_ID")
+    private Extra_Feature ext_feature;
     }
