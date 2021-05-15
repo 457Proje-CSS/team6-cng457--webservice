@@ -1,24 +1,28 @@
 package com.CSS457Proje.demo.entity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+
 import javax.persistence.Id;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Review")
+@Table(name="review")
 
-public class Review {
+public class Review implements Serializable{
 
-    @Id
-    @GeneratedValue
-    @Column(name = "productID", unique = true, nullable = false)
-    private int Product_ID;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @javax.persistence.Id
+    @JoinColumn(name = "productFkey", referencedColumnName = "productID",foreignKey = @ForeignKey(name = "TestKey"))
+    private Product productFkey;
+
     private String Comment;
     private int rating;
-
+    public void setReviewID(Product prodID) {
+        this.productFkey = prodID;
+    }
 }

@@ -1,23 +1,24 @@
 package com.CSS457Proje.demo.entity;
+import java.util.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "Product")
+@Entity(name = "Product")
+@Table(name = "product")
 public class Product {
-    @Id
-    private int productID;
+    @javax.persistence.Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "productID")
+    private Long productID;
 
     private String name;
     private int price;
@@ -25,23 +26,12 @@ public class Product {
     private String model;
     private String ScreenSize;
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productFkey")
+    private List<Review> reviews = new ArrayList<Review>();
+
+    public void addReviewToProduct(Review review) {
+        review.setReviewID(this);
+        this.reviews.add(review);
     }
-
-    @javax.persistence.Id
-    public int getProductID() {
-        return productID;
     }
-
-/*
-    @ManyToMany(targetEntity = Extra_Feature.class, cascade= CascadeType.ALL)
-    @JoinColumn(name="Product_ID",referencedColumnName = "productID")
-    private List<Extra_Feature> ExtraFeatures = new ArrayList<>();
-
-    @OneToMany(targetEntity = Review.class, cascade= CascadeType.ALL)
-    @JoinColumn(name="Product_ID", referencedColumnName = "productID")
-    private List<Review> Reviews = new ArrayList<>();
-*/
-
-}
