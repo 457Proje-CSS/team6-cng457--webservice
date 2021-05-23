@@ -24,8 +24,6 @@ public class ProductService {
         return repo.findById(productID).orElse(null);
     }
 
-    public void deleteProduct(int id){
-         repo.deleteById(id);
-    }
+    public void deleteProduct(int id){ repo.deleteById(id); }
 
 }

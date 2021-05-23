@@ -24,7 +24,7 @@ public class Product {
     private int price;
     private String brand;
     private String model;
-    private String ScreenSize;
+    private String screenSize;
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productFkey")
@@ -35,11 +35,10 @@ public class Product {
             name="Product_Features",
             joinColumns=@JoinColumn(name="Product_ID", referencedColumnName="productID"),
             inverseJoinColumns=@JoinColumn(name="Feature_ID", referencedColumnName="FeatureID"))
-    private List<Extra_Feature> features;
+    private List<ExtraFeature> features;
 
     public void addReviewToProduct(Review review) {
         review.setReviewID(this);
         this.reviews.add(review);
     }
-
-    }
+}

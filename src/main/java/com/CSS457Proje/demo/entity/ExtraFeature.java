@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "Extra_Feature")
-public class Extra_Feature {
+public class ExtraFeature {
     @Id
     @Column(name = "FeatureID", unique = true, nullable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
