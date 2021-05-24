@@ -1,4 +1,5 @@
 package com.CSS457Proje.demo.entity;
+import java.io.Serializable;
 import java.util.*;
 
 import lombok.*;
@@ -14,11 +15,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity(name = "Product")
 @Table(name = "product")
-public class Product {
+public abstract class Product implements Serializable {
     @javax.persistence.Id
     @Column(name = "productID", unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long productID;
+    //@GeneratedValue(strategy=GenerationType.AUTO)
+    private int productID;
 
     private String name;
     private int price;

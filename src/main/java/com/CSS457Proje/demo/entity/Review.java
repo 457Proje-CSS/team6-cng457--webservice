@@ -15,7 +15,7 @@ import java.io.Serializable;
 
 public class Review{
     @Column(name = "ReviewID", unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    //@GeneratedValue(strategy=GenerationType.AUTO)
     @Id private int ReviewID;
     @ManyToOne(cascade = CascadeType.ALL)
     private Product productFkey;

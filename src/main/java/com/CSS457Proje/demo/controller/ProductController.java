@@ -10,25 +10,23 @@ import java.util.List;
 @RestController
 public class ProductController {
     @Autowired
-    private ProductService service;
+    private ProductService Productservice;
 
     @PostMapping("/addProduct")
     public Product addProduct(@RequestBody Product product){
-        return service.saveProduct(product);
+        return Productservice.saveProduct(product);
     }
 
     @GetMapping("/getProducts")
-    public List<Product> getProducts(){
-        return service.getProducts();
-    }
+    public List<Product> getProducts() { return Productservice.getProducts(); }
 
     @GetMapping("/getProduct/{id}")
     public Product getProduct(@PathVariable int id){
-        return service.getProduct(id);
+        return Productservice.getProduct(id);
     }
 
     @DeleteMapping("/deleteProduct/{id}")
     public void deleteProduct(@PathVariable int id){
-        service.deleteProduct(id);
+        Productservice.deleteProduct(id);
     }
 }
