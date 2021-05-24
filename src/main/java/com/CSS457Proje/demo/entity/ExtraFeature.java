@@ -16,7 +16,7 @@ import java.util.List;
 public class ExtraFeature {
     @Id
     @Column(name = "FeatureID", unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    //@GeneratedValue(strategy=GenerationType.AUTO)
     private int FeatureID;
     private String feature;
 
