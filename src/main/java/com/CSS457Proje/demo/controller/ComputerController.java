@@ -56,4 +56,5 @@ public class ComputerController {
 
     @GetMapping("/getComputerbyProcessor/{screenResolution}")
     public List<Computer> getComputerbyScreenResolution(@PathVariable String screenResolution){ return computerService.getComputerbyScreenResolution(screenResolution); }
+
 }

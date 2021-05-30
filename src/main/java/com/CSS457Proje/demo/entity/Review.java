@@ -1,23 +1,27 @@
 package com.CSS457Proje.demo.entity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+
+import javax.persistence.Id;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Review")
+@Table(name="review")
 
-public class Review {
-
-    @Id
-    @GeneratedValue
-    private int Product_ID;
+public class Review{
+    @Column(name = "ReviewID", unique = true, nullable = false)
+    //@GeneratedValue(strategy=GenerationType.AUTO)
+    @Id private int ReviewID;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Product productFkey;
     private String Comment;
     private int rating;
-
+    public void setReviewID(Product prodID) {
+        this.productFkey = prodID;
+    }
 }
