@@ -27,4 +27,16 @@ public class PhoneService {
     }
 
     public void deletePhone(int id){ phonerepository.deleteById(id); }
+
+    public List<Phone> getPhonebyBrand(String brand){return  phonerepository.getPhonebyBrand(brand); }
+
+    public List<Phone> getPhonebyInternalmemory(int internalmemory){return  phonerepository.getPhonebyInternalmemory(internalmemory); }
+
+    public List<Phone> getPhonebyName(String name){return  phonerepository.getPhonebyName(name); }
+
+    public List<Phone> getPhonebyPrice(int price){return  phonerepository.getPhonebyPrice(price); }
+
+    public List<Phone> getPhonebyModel(String model){return  phonerepository.getPhonebyModel(model); }
+
+    public List<Phone> getPhonebyScreenSize(String screenSize){return  phonerepository.getPhonebyScreenSize(screenSize); }
 }
