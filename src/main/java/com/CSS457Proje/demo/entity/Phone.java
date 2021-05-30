@@ -8,14 +8,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "Telephone")
-public class Telephone extends Product{
+public class Phone extends Product{
     private int internalMemory;
-    @ManyToOne(targetEntity = TelephoneInventory.class, cascade= CascadeType.ALL)
 
 }

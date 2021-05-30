@@ -19,6 +19,5 @@ public class Computer extends Product{
     private int memory;
     private String processor;
     private String screenResolution;
-    @ManyToOne(targetEntity = ComputerInventory.class, cascade= CascadeType.ALL)
 
 }

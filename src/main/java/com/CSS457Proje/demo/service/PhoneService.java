@@ -39,5 +39,4 @@ public class PhoneService {
     public List<Phone> getPhonebyModel(String model){return  phonerepository.getPhonebyModel(model); }
 
     public List<Phone> getPhonebyScreenSize(String screenSize){return  phonerepository.getPhonebyScreenSize(screenSize); }
-
 }
