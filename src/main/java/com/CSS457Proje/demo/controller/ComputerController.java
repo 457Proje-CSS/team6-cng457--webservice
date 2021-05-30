@@ -29,4 +29,32 @@ public class ComputerController {
 
     @DeleteMapping("/deleteComputer/{id}")
     public void deleteComputer(@PathVariable int id){ computerService.deleteComputer(id); }
+
+    @GetMapping("/getComputerbyBrand/{brand}")
+    public List<Computer> getComputerbyBrand(@PathVariable String brand){ return computerService.getComputerbyBrand(brand); }
+
+    @GetMapping("/getComputerbyName/{name}")
+    public List<Computer> getComputerbyName(@PathVariable String name){ return computerService.getComputerbyName(name); }
+
+    @GetMapping("/getComputerbyPrice/{price}")
+    public List<Computer> getComputerbyPrice(@PathVariable int price){ return computerService.getComputerbyPrice(price); }
+
+    @GetMapping("/getComputerbyModel/{model}")
+    public List<Computer> getComputerbyModel(@PathVariable String model){ return computerService.getComputerbyModel(model); }
+
+    @GetMapping("/getComputerbyScreenSize/{screenSize}")
+    public List<Computer> getComputerbyScreenSize(@PathVariable String screenSize){ return computerService.getComputerbyScreenSize(screenSize); }
+
+    @GetMapping("/getComputerbyStorageCapacity/{storageCapacity}")
+    public List<Computer> getComputerbyStorageCapacity(@PathVariable int storageCapacity){ return computerService.getComputerbyStorageCapacity(storageCapacity); }
+
+    @GetMapping("/getComputerbyMemory/{memory}")
+    public List<Computer> getComputerbyMemory(@PathVariable int memory){ return computerService.getComputerbyMemory(memory); }
+
+    @GetMapping("/getComputerbyProcessor/{processor}")
+    public List<Computer> getComputerbyProcessor(@PathVariable String processor){ return computerService.getComputerbyProcessor(processor); }
+
+    @GetMapping("/getComputerbyProcessor/{screenResolution}")
+    public List<Computer> getComputerbyScreenResolution(@PathVariable String screenResolution){ return computerService.getComputerbyScreenResolution(screenResolution); }
+
 }

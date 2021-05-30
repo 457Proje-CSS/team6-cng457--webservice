@@ -27,4 +27,23 @@ public class ComputerService {
     }
 
     public void deleteComputer(int id){ computerrepository.deleteById(id); }
+
+    public List<Computer> getComputerbyBrand(String brand){return  computerrepository.getComputerbyBrand(brand); }
+
+    public List<Computer> getComputerbyName(String name){return  computerrepository.getComputerbyName(name); }
+
+    public List<Computer> getComputerbyPrice(int price){return  computerrepository.getComputerbyPrice(price); }
+
+    public List<Computer> getComputerbyModel(String model){return  computerrepository.getComputerbyModel(model); }
+
+    public List<Computer> getComputerbyScreenSize(String screenSize){return  computerrepository.getComputerbyScreenSize(screenSize); }
+
+    public List<Computer> getComputerbyStorageCapacity(int storageCapacity){return  computerrepository.getComputerbyStorageCapacity(storageCapacity); }
+
+    public List<Computer> getComputerbyMemory(int memory){return  computerrepository.getComputerbyMemory(memory); }
+
+    public List<Computer> getComputerbyProcessor(String processor){return  computerrepository.getComputerbyProcessor(processor); }
+
+    public List<Computer> getComputerbyScreenResolution(String screenResolution){return  computerrepository.getComputerbyScreenResolution(screenResolution); }
+
 }
