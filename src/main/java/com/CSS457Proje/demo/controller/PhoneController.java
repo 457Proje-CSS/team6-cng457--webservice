@@ -1,9 +1,7 @@
 package com.CSS457Proje.demo.controller;
 
 import com.CSS457Proje.demo.entity.Phone;
-import com.CSS457Proje.demo.entity.Product;
 import com.CSS457Proje.demo.service.PhoneService;
-import com.CSS457Proje.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
