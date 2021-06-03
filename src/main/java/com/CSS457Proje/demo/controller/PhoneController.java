@@ -1,11 +1,13 @@
 package com.CSS457Proje.demo.controller;
 
 import com.CSS457Proje.demo.entity.Phone;
+import com.CSS457Proje.demo.entity.Product;
 import com.CSS457Proje.demo.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Filter;
 
 @RestController
 public class PhoneController {
@@ -47,5 +49,70 @@ public class PhoneController {
 
     @GetMapping("/getPhonebyScreensize/{screenSize}")
     public List<Phone> getPhonebyScreenSize(@PathVariable String screenSize){ return phoneService.getPhonebyScreenSize(screenSize); }
+
+    @GetMapping("/filterPhonesWithCriteria")
+    @ResponseBody
+    public List<Phone> filterPhonesWithCriteria(@RequestParam(required = false,defaultValue = "-999") int productID,
+                                        @RequestParam(required = false) String name,
+                                        @RequestParam(required = false,defaultValue = "-999") int price,
+                                        @RequestParam(required = false,defaultValue = "-999") int operator,
+                                        @RequestParam(required = false) String brand,
+                                        @RequestParam(required = false) String model,
+                                        @RequestParam(required = false) String screenSize,
+                                        @RequestParam(required = false,defaultValue = "-999") int internalMemory) {
+        List<Phone> filteredList = phoneService.getPhones();
+        for(Phone p: filteredList) System.out.println(p.getProductID()+p.getName());
+
+        if(productID!=-999)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(filteredList.get(i).getProductID() != productID) filteredList.remove(i);
+            }
+        }
+        if(name != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getName().contains(name)) filteredList.remove(i);
+            }
+        }
+        if(price != -999)
+        {
+            if(operator == 1){ //1 -> "<" , 2 -> ">"
+                for(int i=filteredList.size()-1; i>=0; i--) {
+                    if(filteredList.get(i).getPrice() > price) filteredList.remove(i);
+                }
+            }
+            else {
+                for (int i = filteredList.size() - 1; i >= 0; i--) {
+                    if (filteredList.get(i).getPrice() < price) filteredList.remove(i);
+                }
+            }
+        }
+        if(brand != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getBrand().contains(brand)) filteredList.remove(i);
+            }
+        }
+        if(model != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getModel().contains(model)) filteredList.remove(i);
+            }
+        }
+        if(screenSize != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getScreenSize().equals(screenSize)) filteredList.remove(i);
+            }
+        }
+        if(internalMemory!=-999)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(filteredList.get(i).getInternalMemory() != internalMemory) filteredList.remove(i);
+            }
+        }
+        return  filteredList;
+    }
 
 }

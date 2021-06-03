@@ -57,4 +57,90 @@ public class ComputerController {
     @GetMapping("/getComputerbyProcessor/{screenResolution}")
     public List<Computer> getComputerbyScreenResolution(@PathVariable String screenResolution){ return computerService.getComputerbyScreenResolution(screenResolution); }
 
+    @GetMapping("/filterComputersWithCriteria")
+    @ResponseBody
+    public List<Computer> filterPhonesWithCriteria(@RequestParam(required = false,defaultValue = "-999") int productID,
+                                                @RequestParam(required = false) String name,
+                                                @RequestParam(required = false,defaultValue = "-999") int price,
+                                                @RequestParam(required = false,defaultValue = "-999") int operator,
+                                                @RequestParam(required = false) String brand,
+                                                @RequestParam(required = false) String model,
+                                                @RequestParam(required = false) String screenSize,
+                                                @RequestParam(required = false,defaultValue = "-999") int storageCapacity,
+                                                @RequestParam(required = false,defaultValue = "-999") int memory,
+                                                @RequestParam(required = false) String processor,
+                                                @RequestParam(required = false) String screenResolution) {
+        List<Computer> filteredList = computerService.getComputers();
+
+        if(productID!=-999)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(filteredList.get(i).getProductID() != productID) filteredList.remove(i);
+            }
+        }
+        if(name != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getName().contains(name)) filteredList.remove(i);
+            }
+        }
+        if(price != -999)
+        {
+            if(operator == 1){ //1 -> "<" , 2 -> ">"
+                for(int i=filteredList.size()-1; i>=0; i--) {
+                    if(filteredList.get(i).getPrice() > price) filteredList.remove(i);
+                }
+            }
+            else {
+                for (int i = filteredList.size() - 1; i >= 0; i--) {
+                    if (filteredList.get(i).getPrice() < price) filteredList.remove(i);
+                }
+            }
+        }
+        if(brand != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getBrand().contains(brand)) filteredList.remove(i);
+            }
+        }
+        if(model != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getModel().contains(model)) filteredList.remove(i);
+            }
+        }
+        if(screenSize != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getScreenSize().equals(screenSize)) filteredList.remove(i);
+            }
+        }
+        if(storageCapacity!=-999)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(filteredList.get(i).getStorageCapacity() != storageCapacity) filteredList.remove(i);
+            }
+        }
+        if(memory!=-999)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(filteredList.get(i).getMemory() != memory) filteredList.remove(i);
+            }
+        }
+        if(processor != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getProcessor().contains(processor)) filteredList.remove(i);
+            }
+        }
+        if(screenResolution != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                if(!filteredList.get(i).getScreenResolution().contains(screenResolution)) filteredList.remove(i);
+            }
+        }
+
+        return  filteredList;
+    }
+
 }
