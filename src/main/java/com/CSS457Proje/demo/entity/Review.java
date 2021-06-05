@@ -17,12 +17,9 @@ import java.io.Serializable;
 public class Review{
     @Column(name = "ReviewID", unique = true, nullable = false)
     @Id private int ReviewID;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JsonBackReference
     private Product productFkey;
     private String Comment;
     private int rating;
-    public void setReviewID(Product prodID) {
-        this.productFkey = prodID;
-    }
 }

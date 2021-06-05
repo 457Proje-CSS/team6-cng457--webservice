@@ -17,7 +17,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity(name = "Product")
 @Table(name = "product")
-public abstract class Product implements Serializable {
+public class Product implements Serializable {
     @javax.persistence.Id
     @Column(name = "productID", unique = true, nullable = false)
     private int productID;
@@ -40,9 +40,4 @@ public abstract class Product implements Serializable {
             inverseJoinColumns=@JoinColumn(name="Feature_ID", referencedColumnName="FeatureID"))
     @JsonIgnoreProperties("features")
     private List<ExtraFeature> features;
-
-    public void addReviewToProduct(Review review) {
-        review.setReviewID(this);
-        this.reviews.add(review);
-    }
 }
