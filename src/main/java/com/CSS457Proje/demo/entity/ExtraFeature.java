@@ -1,5 +1,6 @@
 package com.CSS457Proje.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,10 +17,10 @@ import java.util.List;
 public class ExtraFeature {
     @Id
     @Column(name = "FeatureID", unique = true, nullable = false)
-    //@GeneratedValue(strategy=GenerationType.AUTO)
-    private int FeatureID;
+    private int featureID;
     private String feature;
 
     @ManyToMany(mappedBy = "features")
+    @JsonBackReference
     private List<Product> products;
 }

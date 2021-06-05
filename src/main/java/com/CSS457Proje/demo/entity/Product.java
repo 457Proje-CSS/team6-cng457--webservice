@@ -2,6 +2,8 @@ package com.CSS457Proje.demo.entity;
 import java.io.Serializable;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
@@ -18,7 +20,6 @@ import javax.persistence.*;
 public abstract class Product implements Serializable {
     @javax.persistence.Id
     @Column(name = "productID", unique = true, nullable = false)
-    //@GeneratedValue(strategy=GenerationType.AUTO)
     private int productID;
 
     private String name;
@@ -28,7 +29,8 @@ public abstract class Product implements Serializable {
     private String screenSize;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productFkey")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "productFkey")
+    @JsonIgnoreProperties("reviews")
     private List<Review> reviews = new ArrayList<Review>();
 
     @ManyToMany
@@ -36,6 +38,7 @@ public abstract class Product implements Serializable {
             name="Product_Features",
             joinColumns=@JoinColumn(name="Product_ID", referencedColumnName="productID"),
             inverseJoinColumns=@JoinColumn(name="Feature_ID", referencedColumnName="FeatureID"))
+    @JsonIgnoreProperties("features")
     private List<ExtraFeature> features;
 
     public void addReviewToProduct(Review review) {
