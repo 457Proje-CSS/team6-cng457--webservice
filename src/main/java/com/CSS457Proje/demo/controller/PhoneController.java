@@ -54,8 +54,8 @@ public class PhoneController {
     @ResponseBody
     public List<Phone> filterPhonesWithCriteria(@RequestParam(required = false,defaultValue = "-999") int productID,
                                         @RequestParam(required = false) String name,
-                                        @RequestParam(required = false,defaultValue = "-999") int price,
-                                        @RequestParam(required = false,defaultValue = "-999") int operator,
+                                        @RequestParam(required = false,defaultValue = "-999") int minprice,
+                                        @RequestParam(required = false,defaultValue = "-999") int maxprice,
                                         @RequestParam(required = false) String brand,
                                         @RequestParam(required = false) String model,
                                         @RequestParam(required = false) String screenSize,
@@ -75,18 +75,29 @@ public class PhoneController {
                 if(!filteredList.get(i).getName().contains(name)) filteredList.remove(i);
             }
         }
-        if(price != -999)
+        if(minprice != -999 && maxprice == -999)
         {
-            if(operator == 1){ //1 -> "<" , 2 -> ">"
-                for(int i=filteredList.size()-1; i>=0; i--) {
-                    if(filteredList.get(i).getPrice() > price) filteredList.remove(i);
-                }
+            for (int i = filteredList.size() - 1; i >= 0; i--) {
+                if (filteredList.get(i).getPrice() < minprice) filteredList.remove(i);
             }
-            else {
-                for (int i = filteredList.size() - 1; i >= 0; i--) {
-                    if (filteredList.get(i).getPrice() < price) filteredList.remove(i);
-                }
+
+        }
+        else if(minprice == -999 && maxprice != -999)
+        {
+            for (int i = filteredList.size() - 1; i >= 0; i--) {
+                if (filteredList.get(i).getPrice() > maxprice) filteredList.remove(i);
             }
+
+        }
+        if(minprice != -999 && maxprice != -999)
+        {
+            for (int i = filteredList.size() - 1; i >= 0; i--) {
+                if (filteredList.get(i).getPrice() > maxprice) filteredList.remove(i);
+            }
+            for (int i = filteredList.size() - 1; i >= 0; i--) {
+                if (filteredList.get(i).getPrice() < minprice) filteredList.remove(i);
+            }
+
         }
         if(brand != null)
         {
