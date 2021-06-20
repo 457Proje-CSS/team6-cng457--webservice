@@ -1,12 +1,14 @@
 package com.CSS457Proje.demo.controller;
 
 import com.CSS457Proje.demo.entity.Computer;
+import com.CSS457Proje.demo.entity.ExtraFeature;
 import com.CSS457Proje.demo.entity.Phone;
 import com.CSS457Proje.demo.service.ComputerService;
 import com.CSS457Proje.demo.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -69,7 +71,8 @@ public class ComputerController {
                                                 @RequestParam(required = false,defaultValue = "-999") int storageCapacity,
                                                 @RequestParam(required = false,defaultValue = "-999") int memory,
                                                 @RequestParam(required = false) String processor,
-                                                @RequestParam(required = false) String screenResolution) {
+                                                @RequestParam(required = false) String screenResolution,
+                                                   @RequestParam(required = false) List<Integer> extraFeatures) {
         List<Computer> filteredList = computerService.getComputers();
 
         if(productID!=-999)
@@ -139,7 +142,24 @@ public class ComputerController {
                 if(!filteredList.get(i).getScreenResolution().contains(screenResolution)) filteredList.remove(i);
             }
         }
-
+        /*if(extraFeatures != null)
+        {
+            for (Integer id:extraFeatures) {
+                for(int i=filteredList.size()-1; i>=0; i--) {
+                    if(!filteredList.get(i).getFeatures().contains(id)) filteredList.remove(i);
+                }
+            }
+        }*/
+        if(extraFeatures != null)
+        {
+            for(int i=filteredList.size()-1; i>=0; i--) {
+                List<Integer> tempExtraFeatureID = new ArrayList<>();
+                for (ExtraFeature e:filteredList.get(i).getFeatures()) {
+                    tempExtraFeatureID.add(e.getFeatureID());
+                }
+                if(!tempExtraFeatureID.containsAll(extraFeatures) || filteredList.get(i).getFeatures().size() == 0) filteredList.remove(i);
+            }
+        }
         return  filteredList;
     }
 

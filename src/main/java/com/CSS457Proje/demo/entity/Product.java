@@ -29,6 +29,14 @@ public class Product implements Serializable {
     private String screenSize;
 
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public List<ExtraFeature> getFeatures() {
+        return features;
+    }
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "productFkey")
     @JsonIgnoreProperties("reviews")
     private List<Review> reviews = new ArrayList<Review>();
