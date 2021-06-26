@@ -22,7 +22,17 @@ public class ComputerController {
     }
 
     @GetMapping("/getComputers")
-    public List<Computer> getComputer() { return computerService.getComputers(); }
+    public List<Computer> getComputers() { return computerService.getComputers(); }
+
+    //getComputers2 is just for testing
+    @GetMapping("/getComputers2")
+    public List<Computer> getComputers2() {
+        List<Computer> computers = computerService.getComputers();
+        Computer c1 = new Computer();
+        c1.setProductID(10);
+        c1.setName("testcomputer3");
+        computers.add(c1);
+        return computers; }
 
     @GetMapping("/getComputer/{id}")
     public Computer getComputer(@PathVariable int id){

@@ -1,5 +1,6 @@
 package com.CSS457Proje.demo.controller;
 
+import com.CSS457Proje.demo.entity.Computer;
 import com.CSS457Proje.demo.entity.ExtraFeature;
 import com.CSS457Proje.demo.entity.Phone;
 import com.CSS457Proje.demo.entity.Product;
@@ -17,20 +18,30 @@ public class PhoneController {
     private PhoneService phoneService;
 
     @PostMapping("/addPhone")
-    public Phone addProduct(@RequestBody Phone phone){
+    public Phone addPhone(@RequestBody Phone phone){
         return phoneService.savePhone(phone);
     }
 
     @GetMapping("/getPhones")
-    public List<Phone> getProducts() { return phoneService.getPhones(); }
+    public List<Phone> getPhones() { return phoneService.getPhones(); }
+
+    //getPhones2 is just for testing
+    @GetMapping("/getPhones2")
+    public List<Phone> getPhones2() {
+        List<Phone> computers = phoneService.getPhones();
+        Phone p1 = new Phone();
+        p1.setProductID(11);
+        p1.setName("testphone3");
+        computers.add(p1);
+        return computers; }
 
     @GetMapping("/getPhone/{id}")
-    public Phone getProduct(@PathVariable int id){
+    public Phone getPhone(@PathVariable int id){
         return phoneService.getPhone(id);
     }
 
     @DeleteMapping("/deletePhone/{id}")
-    public void deleteProduct(@PathVariable int id){
+    public void deletePhone(@PathVariable int id){
         phoneService.deletePhone(id);
     }
 

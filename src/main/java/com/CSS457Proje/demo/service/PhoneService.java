@@ -1,5 +1,6 @@
 package com.CSS457Proje.demo.service;
 
+import com.CSS457Proje.demo.entity.Computer;
 import com.CSS457Proje.demo.entity.Phone;
 import com.CSS457Proje.demo.entity.Product;
 import com.CSS457Proje.demo.repository.phonerepository;
@@ -14,17 +15,21 @@ public class PhoneService {
     @Autowired
     private phonerepository phonerepository;
 
-    public Phone savePhone(Phone phone){
-        return phonerepository.save(phone);
+    public Phone savePhone(Phone phone){ return phonerepository.save(phone); }
+
+    public List<Phone> getPhones(){ return phonerepository.findAll(); }
+
+    //getPhones2 is just for testing
+    public List<Phone> getPhones2()  {
+        Phone p1 = new Phone();
+        p1.setProductID(3);
+        p1.setName("testphone3");
+        List<Phone> phones = phonerepository.findAll();
+        phones.add(p1);
+        return phones;
     }
 
-    public List<Phone> getPhones(){
-        return phonerepository.findAll();
-    }
-
-    public Phone getPhone(int id){
-        return phonerepository.findById(id).orElse(null);
-    }
+    public Phone getPhone(int id){ return phonerepository.findById(id).orElse(null); }
 
     public void deletePhone(int id){ phonerepository.deleteById(id); }
 
