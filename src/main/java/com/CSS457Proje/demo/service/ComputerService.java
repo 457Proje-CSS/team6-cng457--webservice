@@ -7,6 +7,7 @@ import com.CSS457Proje.demo.repository.phonerepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +19,16 @@ public class ComputerService {
         return computerrepository.save(computer);
     }
 
-    public List<Computer> getComputers(){
-        return computerrepository.findAll();
+    public List<Computer> getComputers(){ return computerrepository.findAll(); }
+
+    //getComputers2 is just for testing
+    public List<Computer> getComputers2()  {
+        Computer c1 = new Computer();
+        c1.setProductID(3);
+        c1.setName("testcomputer3");
+        List<Computer> computers = computerrepository.findAll();
+        computers.add(c1);
+        return computers;
     }
 
     public Computer getComputer(int id){
