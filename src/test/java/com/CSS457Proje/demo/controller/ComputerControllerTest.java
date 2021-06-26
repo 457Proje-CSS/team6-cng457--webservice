@@ -38,7 +38,7 @@ public class ComputerControllerTest {
     private int port;
 
     @Test
-    void getComputers() {
+    void getComputersMock() {
         Computer c1 = new Computer();
         Computer c2 = new Computer();
         c1.setProductID(8);
@@ -57,4 +57,7 @@ public class ComputerControllerTest {
     }
 
     @Test
-    void getComputers2() { assertTrue(this.restTemplate.getForObject("http://localhost:" + port + "/getComputers",Computer[].class)[0].getName().equals("testcomputer1")); }}
+    void getComputers() { assertTrue(this.restTemplate.getForObject("http://localhost:8080/getComputers",Computer[].class)[0].getName().equals("pc1")); }
+
+    @Test
+    void getComputerwithID() { assertTrue(this.restTemplate.getForObject("http://localhost:8080/getComputer/6",Computer.class).getName().equals("pc2")); }}

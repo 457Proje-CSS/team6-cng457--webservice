@@ -41,7 +41,7 @@ public class PhoneControllerTest {
     private int port;
 
     @Test
-    void getPhones() {
+    void getPhonesMock() {
         Phone p1 = new Phone();
         Phone p2 = new Phone();
         p1.setProductID(8);
@@ -60,5 +60,9 @@ public class PhoneControllerTest {
     }
 
     @Test
-    void getPhones2() { assertTrue(this.restTemplate.getForObject("http://localhost:" + port + "/getPhones2",Phone[].class)[0].getName().equals("testphone1")); }
+    void getPhones() {
+        assertTrue(this.restTemplate.getForObject("http://localhost:8080/getPhones",Phone[].class)[0].getName().equals("5")); }
+
+    @Test
+    void getPhonewithID() { assertTrue(this.restTemplate.getForObject("http://localhost:8080/getPhone/3",Phone.class).getName().equals("phone 3")); }
 }
