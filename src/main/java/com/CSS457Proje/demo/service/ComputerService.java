@@ -5,8 +5,10 @@ import com.CSS457Proje.demo.entity.Phone;
 import com.CSS457Proje.demo.repository.computerrepository;
 import com.CSS457Proje.demo.repository.phonerepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.LockModeType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class ComputerService {
     @Autowired
     private computerrepository computerrepository;
 
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     public Computer saveComputer(Computer computer){
         return computerrepository.save(computer);
     }
@@ -35,6 +38,7 @@ public class ComputerService {
         return computerrepository.findById(id).orElse(null);
     }
 
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     public void deleteComputer(int id){ computerrepository.deleteById(id); }
 
     public List<Computer> getComputerbyBrand(String brand){return  computerrepository.getComputerbyBrand(brand); }
