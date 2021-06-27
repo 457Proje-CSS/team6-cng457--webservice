@@ -1,5 +1,6 @@
 package com.CSS457Proje.demo.controller;
 
+import com.CSS457Proje.demo.entity.Computer;
 import com.CSS457Proje.demo.entity.ExtraFeature;
 import com.CSS457Proje.demo.entity.Phone;
 import com.CSS457Proje.demo.entity.Product;
@@ -25,7 +26,7 @@ public class PhoneController {
      * @return Phone goes to savePhone function of ComputerService
      */
     @PostMapping("/addPhone")
-    public Phone addProduct(@RequestBody Phone phone){
+    public Phone addPhone(@RequestBody Phone phone){
         return phoneService.savePhone(phone);
     }
     /**
@@ -34,14 +35,28 @@ public class PhoneController {
      * @return getComputers function of ComputerService
      */
     @GetMapping("/getPhones")
+
     public List<Phone> getProducts() { return phoneService.getPhones(); }
+    
+
+    public List<Phone> getPhones() { return phoneService.getPhones(); }
+
+    //getPhones2 is just for testing
+    @GetMapping("/getPhones2")
+    public List<Phone> getPhones2() {
+        List<Phone> computers = phoneService.getPhones();
+        Phone p1 = new Phone();
+        p1.setProductID(11);
+        p1.setName("testphone3");
+        computers.add(p1);
+        return computers; }
     /**
      * This function get Computer that has given id with their Computer informations with GET request method
      * @param id
      * @return id goes to getComputer function of ComputerService
      */
     @GetMapping("/getPhone/{id}")
-    public Phone getProduct(@PathVariable int id){
+    public Phone getPhone(@PathVariable int id){
         return phoneService.getPhone(id);
     }
     /**
@@ -50,7 +65,7 @@ public class PhoneController {
      * @return id goes to deleteComputer function of ComputerService
      */
     @DeleteMapping("/deletePhone/{id}")
-    public void deleteProduct(@PathVariable int id){
+    public void deletePhone(@PathVariable int id){
         phoneService.deletePhone(id);
     }
     /**

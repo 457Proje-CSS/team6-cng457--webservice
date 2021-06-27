@@ -28,6 +28,8 @@ public class Product implements Serializable {
     private String model;
     private String screenSize;
 
+    @Version
+    private int version;
 
     public List<Review> getReviews() {
         return reviews;

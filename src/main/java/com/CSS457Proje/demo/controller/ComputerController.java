@@ -41,7 +41,22 @@ public class ComputerController {
      * @return getComputers function of ComputerService
      */
     @GetMapping("/getComputers")
+
     public List<Computer> getComputer() { return computerService.getComputers(); }
+
+
+    public List<Computer> getComputers() { return computerService.getComputers(); }
+
+    //getComputers2 is just for testing
+    @GetMapping("/getComputers2")
+    public List<Computer> getComputers2() {
+        List<Computer> computers = computerService.getComputers();
+        Computer c1 = new Computer();
+        c1.setProductID(10);
+        c1.setName("testcomputer3");
+        computers.add(c1);
+        return computers; }
+
     /**
      * This function get Computer that has given id with their Computer informations with GET request method
      * @param id
@@ -130,8 +145,8 @@ public class ComputerController {
     @ResponseBody
     public List<Computer> filterPhonesWithCriteria(@RequestParam(required = false,defaultValue = "-999") int productID,
                                                 @RequestParam(required = false) String name,
-                                                @RequestParam(required = false,defaultValue = "-999") int price,
-                                                @RequestParam(required = false,defaultValue = "-999") int operator,
+                                                @RequestParam(required = false,defaultValue = "-999") int minprice,
+                                                @RequestParam(required = false,defaultValue = "-999") int maxprice,
                                                 @RequestParam(required = false) String brand,
                                                 @RequestParam(required = false) String model,
                                                 @RequestParam(required = false) String screenSize,
@@ -156,18 +171,29 @@ public class ComputerController {
                 if(!filteredList.get(i).getName().contains(name)) filteredList.remove(i);
             }
         }
-        if(price != -999)
+        if(minprice != -999 && maxprice == -999)
         {
-            if(operator == 1){ //1 -> "<" , 2 -> ">"
-                for(int i=filteredList.size()-1; i>=0; i--) {
-                    if(filteredList.get(i).getPrice() > price) filteredList.remove(i);
-                }
+            for (int i = filteredList.size() - 1; i >= 0; i--) {
+                if (filteredList.get(i).getPrice() < minprice) filteredList.remove(i);
             }
-            else {
-                for (int i = filteredList.size() - 1; i >= 0; i--) {
-                    if (filteredList.get(i).getPrice() < price) filteredList.remove(i);
-                }
+
+        }
+        else if(minprice == -999 && maxprice != -999)
+        {
+            for (int i = filteredList.size() - 1; i >= 0; i--) {
+                if (filteredList.get(i).getPrice() > maxprice) filteredList.remove(i);
             }
+
+        }
+        if(minprice != -999 && maxprice != -999)
+        {
+            for (int i = filteredList.size() - 1; i >= 0; i--) {
+                if (filteredList.get(i).getPrice() > maxprice) filteredList.remove(i);
+            }
+            for (int i = filteredList.size() - 1; i >= 0; i--) {
+                if (filteredList.get(i).getPrice() < minprice) filteredList.remove(i);
+            }
+
         }
         if(brand != null)
         {
