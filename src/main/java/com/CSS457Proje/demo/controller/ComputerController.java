@@ -37,7 +37,6 @@ public class ComputerController {
     }
     /**
      * This function get all Computers with their Computer informations with GET request method
-     * @param
      * @return getComputers function of ComputerService
      */
     @GetMapping("/getComputers")
@@ -69,7 +68,7 @@ public class ComputerController {
     /**
      * This function delete Computer that has given id with their Computer informations with Delete request method
      * @param id
-     * @return id goes to deleteComputer function of ComputerService
+     * id goes to deleteComputer function of ComputerService
      */
     @DeleteMapping("/deleteComputer/{id}")
     public void deleteComputer(@PathVariable int id){ computerService.deleteComputer(id); }

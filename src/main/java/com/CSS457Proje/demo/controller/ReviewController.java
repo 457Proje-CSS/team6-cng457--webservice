@@ -1,6 +1,6 @@
 package com.CSS457Proje.demo.controller;
 
-import com.CSS457Proje.demo.entity.ExtraFeature;
+
 import com.CSS457Proje.demo.entity.Review;
 import com.CSS457Proje.demo.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,36 +17,35 @@ public class ReviewController {
     private ReviewService Reviewservice;
 
     /**
-     * This function adds Computer with given Computer informations with POST request method
+     * This function adds  Review with given Review  informations with POST request method
      * @param review with request body
-     * @return Extra feature goes to saveFeature function of Featureservice
+     * @return  Review goes to saveReview function of Reviewservice
      */
     @PostMapping("/addReview")
     public Review addReview(@RequestBody Review review){
         return Reviewservice.saveReview(review);
     }
     /**
-     * This function gets all Extra Features with their ExtraFeature informations with GET request method
-     * @param
-     * @return getFeatures function of Featureservice
+     * This function gets all  Reviews with their Review informations with GET request method
+     * @return getReviews function of Reviewservice
      */
     @GetMapping("/getReviews")
     public List<Review> getReview(){
         return Reviewservice.getReviews();
     }
     /**
-     * This function gets Extra Feature that has given id with their ExtraFeature informations with GET request method
+     * This function gets  Review that has given id with their Review informations with GET request method
      * @param id
-     * @return id goes to getFeature function of Featureservice
+     * @return id goes to getReview function of Reviewservice
      */
     @GetMapping("/getReview/{id}")
     public Review getReview(@PathVariable int id){
         return Reviewservice.getReview(id);
     }
     /**
-     * This function deletes Extra Feature that has given id with their ExtraFeature informations with GET request method
+     * This function deletes  Review that has given id with their Review informations with GET request method
      * @param id
-     * @return id goes to deleteFeature function of Featureservice
+     * id goes to deleteReview function of Reviewservice
      */
     @DeleteMapping("/deleteReview/{id}")
     public void deleteReview(@PathVariable int id){

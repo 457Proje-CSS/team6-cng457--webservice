@@ -21,18 +21,17 @@ public class PhoneController {
     @Autowired
     private PhoneService phoneService;
     /**
-     * This function adds Computer with given Computer informations with POST request method
+     * This function adds Phone with given Phone informations with POST request method
      * @param phone with request body
-     * @return Phone goes to savePhone function of ComputerService
+     * @return Phone goes to savePhone function of PhoneService
      */
     @PostMapping("/addPhone")
     public Phone addPhone(@RequestBody Phone phone){
         return phoneService.savePhone(phone);
     }
     /**
-     * This function get all Computers with their Computer informations with GET request method
-     * @param
-     * @return getComputers function of ComputerService
+     * This function get all Phones with their Phone informations with GET request method
+     * @return getPhones function of PhoneService
      */
     @GetMapping("/getPhones")
 
@@ -41,37 +40,40 @@ public class PhoneController {
 
     public List<Phone> getPhones() { return phoneService.getPhones(); }
 
+    /**
+     * @return 
+     */
     //getPhones2 is just for testing
     @GetMapping("/getPhones2")
     public List<Phone> getPhones2() {
-        List<Phone> computers = phoneService.getPhones();
+        List<Phone> Phones = phoneService.getPhones();
         Phone p1 = new Phone();
         p1.setProductID(11);
         p1.setName("testphone3");
-        computers.add(p1);
-        return computers; }
+        Phones.add(p1);
+        return Phones; }
     /**
-     * This function get Computer that has given id with their Computer informations with GET request method
+     * This function get Phone that has given id with their Phone informations with GET request method
      * @param id
-     * @return id goes to getComputer function of ComputerService
+     * @return id goes to getPhone function of PhoneService
      */
     @GetMapping("/getPhone/{id}")
     public Phone getPhone(@PathVariable int id){
         return phoneService.getPhone(id);
     }
     /**
-     * This function delete Computer that has given id with their Computer informations with Delete request method
+     * This function delete Phone that has given id with their Phone informations with Delete request method
      * @param id
-     * @return id goes to deleteComputer function of ComputerService
+     * id goes to deletePhone function of PhoneService
      */
     @DeleteMapping("/deletePhone/{id}")
     public void deletePhone(@PathVariable int id){
         phoneService.deletePhone(id);
     }
     /**
-     * This function get Computers that has given brand or alike brand with their Computer informations with GET request method
+     * This function get Phones that has given brand or alike brand with their Phone informations with GET request method
      * @param brand name
-     * @return brand goes to getComputerbyBrand function of ComputerService
+     * @return brand goes to getPhonebyBrand function of PhoneService
      */
     @GetMapping("/getPhonebyBrand/{brand}")
     public List<Phone> getPhonebyBrand(@PathVariable String brand){ return phoneService.getPhonebyBrand(brand); }
@@ -79,37 +81,37 @@ public class PhoneController {
     @GetMapping("/getPhonebyInternalmemory/{internalmemory}")
     public List<Phone> getPhonebyInternalMemory(@PathVariable int internalmemory){ return phoneService.getPhonebyInternalmemory(internalmemory); }
     /**
-     * This function get Computers that has given name or alike name with their Computer informations with GET request method
+     * This function get Phones that has given name or alike name with their Phone informations with GET request method
      * @param name
-     * @return name goes to getComputerbyName function of ComputerService
+     * @return name goes to getPhonebyName function of PhoneService
      */
     @GetMapping("/getPhonebyName/{name}")
     public List<Phone> getPhonebyName(@PathVariable String name){ return phoneService.getPhonebyName(name); }
     /**
-     * This function get Computers that has given price or alike price with their Computer informations with GET request method
+     * This function get Phones that has given price or alike price with their Phone informations with GET request method
      * @param price
-     * @return price goes to getComputerbyPrice function of ComputerService
+     * @return price goes to getPhonebyPrice function of PhoneService
      */
     @GetMapping("/getPhonebyPrice/{price}")
     public List<Phone> getPhonebyPrice(@PathVariable int price){ return phoneService.getPhonebyPrice(price); }
     /**
-     * This function get Computers that has given model or alike model with their Computer informations with GET request method
+     * This function get Phones that has given model or alike model with their Phone informations with GET request method
      * @param model
-     * @return model goes to getComputerbyModel function of ComputerService
+     * @return model goes to getPhonebyModel function of PhoneService
      */
     @GetMapping("/getPhonebyModel/{model}")
     public List<Phone> getPhonebyModel(@PathVariable String model){ return phoneService.getPhonebyModel(model); }
     /**
-     * This function get Computers that has given screen size or alike screen size with their Computer informations with GET request method
+     * This function get Phones that has given screen size or alike screen size with their Phone informations with GET request method
      * @param screenSize
-     * @return screenSize goes to getComputerbyScreenSize function of ComputerService
+     * @return screenSize goes to getPhonebyScreenSize function of PhoneService
      */
     @GetMapping("/getPhonebyScreensize/{screenSize}")
     public List<Phone> getPhonebyScreenSize(@PathVariable String screenSize){ return phoneService.getPhonebyScreenSize(screenSize); }
     /**
-     * This function get Computers that has given many criteria or alike many criteria with their Computer informations with GET request method
+     * This function get Phones that has given many criteria or alike many criteria with their Phone informations with GET request method
      * @param productID,name,price,operator,brand,model,screenSize,storageCapacity,memory,processor,screenResolution,extraFeatures
-     * @return list of computer that filtered with given filter situations
+     * @return list of Phone that filtered with given filter situations
      */
     @GetMapping("/filterPhonesWithCriteria")
     @ResponseBody

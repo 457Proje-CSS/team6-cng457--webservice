@@ -17,7 +17,7 @@ public class ExtraFeaturesController {
     @Autowired
     private ExtraFeaturesService Featureservice;
     /**
-     * This function adds Computer with given Computer informations with POST request method
+     * This function adds Extra Feature with given ExtraFeature  informations with POST request method
      * @param extraFeature with request body
      * @return Extra feature goes to saveFeature function of Featureservice
      */
@@ -27,7 +27,6 @@ public class ExtraFeaturesController {
     }
     /**
      * This function gets all Extra Features with their ExtraFeature informations with GET request method
-     * @param
      * @return getFeatures function of Featureservice
      */
     @GetMapping("/getFeatures")
@@ -46,7 +45,7 @@ public class ExtraFeaturesController {
     /**
      * This function deletes Extra Feature that has given id with their ExtraFeature informations with GET request method
      * @param id
-     * @return id goes to deleteFeature function of Featureservice
+     * id goes to deleteFeature function of Featureservice
      */
     @DeleteMapping("/deleteFeature/{id}")
     public void deleteFeature(@PathVariable int id){
